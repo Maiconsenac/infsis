@@ -14,7 +14,7 @@ class Pais extends CI_Controller {
       public function verica_sessao(){
     
        if(!$this->session->logado){                      
-           redirect('admin/login');
+           redirect('usuarios/login');
        } 
       }  
 

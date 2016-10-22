@@ -5,7 +5,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
            <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?= $this->session->nome ?></a></li>
-           <li><a href="<?= base_url('admin/sair') ?>"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
+           <li><a href="<?= base_url('usuarios/sair') ?>"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
         </ul>
     </div>
 </nav>

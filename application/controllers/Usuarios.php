@@ -6,22 +6,53 @@ class Usuarios extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        //nome do arquivo contendo as functions da model
-        //2º parametro (opcional) nome a ser usado para referenciar model marcas
         $this->load->model('model_usuarios', 'usuariosM');
     }
-    
-      public function verica_sessao(){
-    
-       if(!$this->session->logado){                      
-           redirect('admin/login');
-       } 
-      }  
-    
+
+    public function verica_sessao() {
+        if (!$this->session->logado) {
+            redirect('usuarios/login');
+        }
+    }
+
     public function index() {
         $this->verica_sessao();
-        $dados['usuarios'] = $this->usuariosM->select();
-        $this->load->view('manut_usuarios', $dados);
+        $this->load->model('model_produtos', 'produtosM');
+        $this->load->model('model_marcas', 'marcasM');
+        $dados['produtos'] = $this->produtosM->select();
+        $dados['marcas'] = $this->marcasM->select();
+        if ($this->session->nivel == 2) {
+            $this->load->view('index_admin', $dados);
+        } else {
+            $this->load->view('index_cliente', $dados);
+        }
+    }
+
+    public function login() {
+        $this->load->view('login');
+    }
+
+    public function logar() {
+
+        $email = $this->input->post('email');
+        $senha = $this->input->post('senha');
+
+        $verifica = $this->usuariosM->verificaUsuario($email, $senha);
+
+        if (isset($verifica)) {
+            $sessao['nome'] = $verifica->nome;
+            $sessao['id'] = $verifica->id;
+            $sessao['nivel'] = $verifica->nivel;
+            $sessao['logado'] = TRUE;
+            $this->session->set_userdata($sessao);
+        }
+        redirect();
+    }
+
+    public function sair() {
+
+        $this->session->sess_destroy();
+        redirect();
     }
 
     public function open_new_usuarios() {
@@ -30,15 +61,13 @@ class Usuarios extends CI_Controller {
 
     public function incluir() {
         //$this->output->enable_profiler(TRUE);
-        
+
         $dados = $this->input->post();
         $dados['senha'] = md5($this->input->post('senha'));
 
         if ($this->usuariosM->insert($dados)) {
             redirect(base_url('usuarios'));
         }
-        
-        
     }
 
     public function deletar($id) {

@@ -53,7 +53,7 @@
 
         <div class="container">
 
-            <form class="form-signin" method="post" action="<?= base_url('admin/logar') ?>">
+            <form class="form-signin" method="post" action="<?= base_url('usuarios/logar') ?>">
                 <h2 class="form-signin-heading">Login</h2>
                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus>
                 <br />

@@ -9,7 +9,7 @@ class model_usuarios extends CI_Model {
     
       public function verificaUsuario($email, $senha){
         
-        $sql = "select * from usuarios where email=? and senha=? and nivel=2 ";
+        $sql = "select * from usuarios where email=? and senha=? ";
         $query = $this->db->query($sql, array($email, $senha));
         return $query->row();      
     }   
