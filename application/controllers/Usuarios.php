@@ -10,8 +10,18 @@ class Usuarios extends CI_Controller {
     }
 
     public function verica_sessao() {
+        $this->load->model('model_produtos', 'produtosM');
+        $this->load->model('model_marcas', 'marcasM');
+        $dados['produtos'] = $this->produtosM->select();
+        $dados['marcas'] = $this->marcasM->select();
         if (!$this->session->logado) {
-            redirect('usuarios/login');
+            $this->load->view('index_cliente', $dados);
+        } else {
+            if ($this->session->nivel == 2) {
+                $this->load->view('index_admin', $dados);
+            } else {
+                $this->load->view('index_cliente', $dados);
+            }
         }
     }
 
@@ -21,11 +31,6 @@ class Usuarios extends CI_Controller {
         $this->load->model('model_marcas', 'marcasM');
         $dados['produtos'] = $this->produtosM->select();
         $dados['marcas'] = $this->marcasM->select();
-        if ($this->session->nivel == 2) {
-            $this->load->view('index_admin', $dados);
-        } else {
-            $this->load->view('index_cliente', $dados);
-        }
     }
 
     public function login() {

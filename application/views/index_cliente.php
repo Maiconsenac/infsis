@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <body>
 
-        <?php include 'include/inc_navbarAdmin.php'; ?>  
+        <?php include 'include/inc_navbarCli.php'; ?>  
 
         <div class="col-sm-12">
             <h3 style="text-align: center">EM CONSTRUÇÃO</h3>
