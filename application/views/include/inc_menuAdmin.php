@@ -47,6 +47,6 @@
         <li><a href="<?= base_url('cidade') ?>">Cidade</a></li>
         <li><a href="<?= base_url('itensVenda') ?>">Itens Vendas</a></li>
         <li><a href="<?= base_url('vendas') ?>">Vendas</a></li>
-        <li><a href="<?= base_url('usuarios') ?>">Usuários Admin</a></li>
+        <li><a href="<?= base_url('usuarios/usuariosAdmin') ?>">Usuários Admin</a></li>
     </ul>
 </div>

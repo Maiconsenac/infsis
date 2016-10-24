@@ -32,6 +32,11 @@ class Usuarios extends CI_Controller {
         $dados['produtos'] = $this->produtosM->select();
         $dados['marcas'] = $this->marcasM->select();
     }
+    
+    public function usuariosAdmin(){
+        $dados['usuarios'] = $this->usuariosM->select();
+        $this->load->view('manut_usuarios', $dados);
+    }
 
     public function login() {
         $this->load->view('login');

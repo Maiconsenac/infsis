@@ -13,7 +13,13 @@ class Admin extends CI_Controller {
 
     public function index() {
         $this->verica_sessao();
-        $this->load->view('index_admin');
+        $this->load->model('model_marcas', 'marcasM');
+        $this->load->model('model_categorias', 'categoriasM');
+        $this->load->model('model_produtos', 'produtosM');
+        $dados['marcas'] = $this->marcasM->select();
+        $dados['categorias'] = $this->categoriasM->select();
+        $dados['produtos'] = $this->produtosM->select();
+        $this->load->view('index_admin', $dados);
     }
 
 }

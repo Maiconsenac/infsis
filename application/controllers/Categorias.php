@@ -20,7 +20,6 @@ class Categorias extends CI_Controller {
 
     public function index() {
         $this->verica_sessao();
-        $this->verica_sessao();
         $dados['categorias'] = $this->categoriasM->select();
         $this->load->view('manut_categorias', $dados);
     }
